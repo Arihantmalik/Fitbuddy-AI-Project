@@ -2,6 +2,8 @@
 FitBuddy – AI Fitness Plan Generator
 FastAPI Backend with Google Gemini AI Integration
 """
+import logging
+logging.basicConfig(level=logging.INFO)
 
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.staticfiles import StaticFiles
@@ -214,7 +216,7 @@ Keep it practical, evidence-based, and under 150 words. No lists — write as fl
 @app.get("/", response_class=HTMLResponse)
 async def serve_frontend():
     """Serve the main FitBuddy HTML interface"""
-    with open("static/index.html", "r") as f:
+    with open("static/index.html", "r", encoding="utf-8") as f:
         return f.read()
 
 @app.get("/health")
